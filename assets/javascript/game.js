@@ -1,6 +1,5 @@
 // VARIABLES
-
-
+var randomWordArray
 
 
 
