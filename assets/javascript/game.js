@@ -15,47 +15,59 @@
     // variables to keep track of score and empty arrays for holding inputs
     var string;
     var guessCounter = 0;
-    // var display = [myLength];
-    // var win = myLength;
     var storeGuessArray = [];
-    // var letters = answer.split("");
-    var answerArray = [];
+    var lettersGuessed = [];
     var lives = 10;
 
 
 // FUNCTIONS
 
     function displayLettersGuessed () {
-        document.getElementById("wrongLetters"). innerHTML = storeGuessArray;
+        document.getElementById("wrongLetters"). innerHTML = storeGuessArray.push(String);
     };
 
-    // function to put underscores in the answerArray based on the length of the word that needs to be guessed
+    // function to put underscores in the storeGuessArray based on the length of the word that needs to be guessed and display it on the page
     function startGame() {
         for (var i = 0; i < randomWord.length; i++)
         {
-            answerArray[i] = "_"; 
+            storeGuessArray[i] = "_"; 
         }
  
-        string = answerArray.join(" ");
+        string = storeGuessArray.join(" ");
         document.getElementById("guessWord").innerHTML = string;
     };
 
 
     function userGuess() {
-        var guess = document.getElementById("lettersGuessed").value;
+
+        // key press event to fill my storeGuessArray with the letters the user has guessed (couldn't get this to work yet, it does keep track of keys that are pressed and store them in an array)
+        // document.onkeypress = function(evt) {
+        //     evt = evt || window.event;
+        
+        //     var charCode = typeof evt.which == "number" ? evt.which : evt.keyCode;
+        
+        //     if (charCode) {
+        //         lettersGuessed.push(String.fromCharCode(charCode));
+        //     }
+        //     console.log(lettersGuessed);
+        // };
+
+        var guess = lettersGuessed;
 
         //make another check here, maybe against an alphabet array to make sure user input is a letter and not a number or symbol
         if (guess.length > 0) {
             
             for (var i = 0; i < randomWord.length; i++){
+
+                // if the randomWord has the letter the user typed in, the letter will be assigned to guess
                 if (randomWord[i] === guess) {
-                    answerArray[i] = guess;
+                    lettersGuessed[i] = guess;
                 }   
-            }
+            };
 
             guessCounter++;
             document.getElementById("guessesRemaining").innerHTML = "Your guesses: " + guessCounter;
-            document.getElementById("answers").innerHTML = answers.join("");
+            document.getElementById("guessWord").innerHTML = storeGuessArray.join(" ");
         }
 
         //another if statement here to say something (or add an image) based on number of guesses
@@ -65,19 +77,6 @@
 // call my functions when the window is opened 
 window.onload = function () {
     startGame();
-        
-    // key press event to fill my answers array with the letters the user has guessed
-        document.onkeypress = function(evt) {
-            evt = evt || window.event;
-        
-            var charCode = typeof evt.which == "number" ? evt.which : evt.keyCode;
-        
-            if (charCode) {
-                answerArray.push(String.fromCharCode(charCode));
-            }
-            console.log(answerArray);
-        };
-    
     displayLettersGuessed();
     userGuess();
 };
