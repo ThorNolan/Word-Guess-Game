@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets\css\style.css">
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-    <script type="text/javascript" src="assets\javascript\game.js"></script>
 
     <title>Game of Hangman</title>
 </head>
@@ -20,22 +19,22 @@
     </div>
 
     <div id="mainSection">
-        <div id="left">
 
-        </div>
+        <div id="left"></div>
 
-        <div id="right">
-            <p id="getStarted">Press any letter key to begin...</p>
-            
-            <p id="wins"></p>
-
-            <p> Guess this word: <div id="guessWord"><div></p>
-
-            <p id="guessesRemaining"></p>
+        <div id="right">            
+            <p id="getStarted">Press letter to begin...</p>
+        
+            <p> Your word: </p>
+            <p id="guessWord"></p>
 
             <p id="lettersGuessed"></p>
+            
+            <p id="guessesRemaining"></p>
+
         </div>    
     </div>
     
+    <script type="text/javascript" src="assets\javascript\game.js"></script>
 </body>
 </html>
