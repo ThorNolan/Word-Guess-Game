@@ -18,6 +18,8 @@
     var incorrectGuesses= [];
     var lives = 10;
 
+    //theme song from GoT :)
+    var audio = document.getElementById("GoTTheme");
 
 // FUNCTIONS
 
@@ -77,17 +79,6 @@
                 document.getElementById("wrongLetters").innerHTML = " " + incorrectGuesses;
                 document.getElementById("livesLeft").innerHTML = lives;
             }
-        }
-    };
-
-    // function to check if the user has guessed the whole word and adjust their correctGuesses, and start the game over if they run out of lives
-    function winCondition () {
-
-        //get the html elements from the page
-        document.getElementById("guessWord").innerHTML = wordDisplay.join(" ");
-        document.getElementById("livesLeft").innerHTML = lives;
-
-        for(var i = 0; i < underscores; i++) {
 
             //if the word is fully filled out, you gain one point and get a new word...
             if (wordDisplay.toString() == randomWordLetters.toString()) {
@@ -99,9 +90,8 @@
                 alert("Winter is coming...");
                 startGame();
             }
-        }    
+        }
     };
-
 
     // make the "new word" button on the page start the game over and give you a new word 
     document.getElementById("reset").addEventListener("click", function(){
@@ -111,7 +101,7 @@
 
 // GAMEPLAY: call my functions and check for key presses when the window is loaded 
 window.onload = function () {
-    winCondition();
+    audio.loop = true;
     document.addEventListener("keypress", letterPressed);
     startGame();
 };
