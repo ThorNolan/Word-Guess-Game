@@ -5,78 +5,86 @@
     ];
 
     //alphabet that the game will check against to make sure the player pressed a key that's a letter
-    var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-    'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-    't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h",
+    "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+    "t", "u", "v", "w", "x", "y", "z"];
 
     // variable to pick a random word from the randomWordArray
     var randomWord = randomWordArray[Math.floor(Math.random() * randomWordArray.length)];
 
-    // variables to keep track of score and empty arrays for holding inputs
-    var string;
+    // variables to keep track of score and empty arrays for holding inputs and empty spaces based on the number of letters in the words
     var guessCounter = 0;
-    var storeGuessArray = [];
-    var lettersGuessed = [];
+    var randomWordSpaces = [];
+    var underscores;
+    var userInputArray = [];
     var lives = 10;
+    var input = document.getElementById("letterPressed");
 
 
 // FUNCTIONS
 
-    function displayLettersGuessed () {
-        document.getElementById("wrongLetters"). innerHTML = storeGuessArray.push(String);
-    };
-
-    // function to put underscores in the storeGuessArray based on the length of the word that needs to be guessed and display it on the page
+    // function to put underscores in randomWordSpaces based on the length of the word that needs to be guessed and displays the blank spaces on the page at id "guessWord"
     function startGame() {
         for (var i = 0; i < randomWord.length; i++)
         {
-            storeGuessArray[i] = "_"; 
-        }
+            randomWordSpaces[i] = "_"; 
+        };
  
-        string = storeGuessArray.join(" ");
-        document.getElementById("guessWord").innerHTML = string;
+        underscores = randomWordSpaces.join(" ");
+        document.getElementById("guessWord").innerHTML = underscores;
+        console.log(randomWordSpaces);
+        console.log(randomWord);
     };
-
+ 
+    // function to compare user inputs with the blank random word and adjust their score
 
     function userGuess() {
 
-        // key press event to fill my storeGuessArray with the letters the user has guessed (couldn't get this to work yet, it does keep track of keys that are pressed and store them in an array)
-        // document.onkeypress = function(evt) {
-        //     evt = evt || window.event;
-        
-        //     var charCode = typeof evt.which == "number" ? evt.which : evt.keyCode;
-        
-        //     if (charCode) {
-        //         lettersGuessed.push(String.fromCharCode(charCode));
-        //     }
-        //     console.log(lettersGuessed);
-        // };
+        var textContent = document.querySelector("letterPressed").value;
+        console.log(textContent);
 
-        var guess = lettersGuessed;
+        var guess = textContent.value;
+        console.log(guess);
 
-        //make another check here, maybe against an alphabet array to make sure user input is a letter and not a number or symbol
+        //maybe make another check here, maybe against an alphabet array to make sure user input is a letter and not a number or symbol
         if (guess.length > 0) {
             
-            for (var i = 0; i < randomWord.length; i++){
+            for (var i = 0; i < randomWord.length; i++) {
 
                 // if the randomWord has the letter the user typed in, the letter will be assigned to guess
                 if (randomWord[i] === guess) {
-                    lettersGuessed[i] = guess;
-                }   
+                    randomWordSpaces[i].innerHTML = guess;
+                    guessCounter++;
+                    document.getElementById("guessWord").innerHTML = randomWordSpaces.join(" ");
+                } 
+                var j = (randomWord.indexOf(geuss));
+                if (j === -1) {
+                    lives--;
+                    guessCounter++;
+                };  
             };
 
-            guessCounter++;
             document.getElementById("guessesRemaining").innerHTML = "Your guesses: " + guessCounter;
-            document.getElementById("guessWord").innerHTML = storeGuessArray.join(" ");
-        }
+        };
 
         //another if statement here to say something (or add an image) based on number of guesses
 
     };
 
-// call my functions when the window is opened 
+
+// call my functions and check for key presses when the window is loaded 
 window.onload = function () {
     startGame();
-    displayLettersGuessed();
+    // key press event to fill my storeGuessArray with the letters the user has guessed (couldn't get this to work yet, it does keep track of keys that are pressed)
+    document.onkeypress = function(evt) {
+        evt = evt || window.event;
+    
+        var charCode = typeof evt.which == "number" ? evt.which : evt.keyCode;
+    
+        //only push it to the output if it's a letter 
+        if (charCode) {
+            input.innerHTML = evt.key;
+        };
+    };
     userGuess();
 };
