@@ -20,20 +20,18 @@
 
     <div id="mainSection">
 
-        <div id="left"></div>
-
-        <div id="right">            
-            <p id="getStarted">Press any letter key to begin guessing the word below...</p>
+            <p>Press any letter key to begin guessing the word below...</p>
         
             <p id="guessWord"></p>
 
-            <div id="letterPressed" type="text"></div>
+            <div id="wrongLetters"></div>
 
-            <ul id="guessedLetters"></ul>
+            <p>Remaining guesses: </p><p id="livesLeft"></p>
 
-            <p id="livesLeft">Guesses remaining:</p>
+            <p>Wins: <div id="wins"></div></p>
 
-        </div>    
+            <button id="reset">New Word</button>
+   
     </div>
     
     <script type="text/javascript" src="assets\javascript\game.js"></script>

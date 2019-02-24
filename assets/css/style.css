@@ -6,6 +6,7 @@ body {
     font-family: 'Cinzel', serif;  
     background-color: black;
     color: white;
+    text-align: center;
 }
 
 #header {
@@ -25,4 +26,8 @@ h1 {
 #mainSection {
     margin: auto;
     width: 600px;
+}
+
+#button {
+    background: blue;
 }
