@@ -88,6 +88,7 @@
             //or you lose.
             } else if (lives === 0) {
                 alert("Winter is coming...");
+                document.getElementById("wrongLetters").innerHTML = [];
                 startGame();
             }
         }
