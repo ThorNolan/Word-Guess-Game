@@ -100,7 +100,7 @@
     });
 
 
-// GAMEPLAY: call my functions and check for key presses when the window is loaded 
+// GAMEPLAY: call my functions and check for key presses when the window is loaded (also make the theme song loop!) 
 window.onload = function () {
     audio.loop = true;
     document.addEventListener("keypress", letterPressed);
